@@ -33,12 +33,12 @@ int main(){
         return 1;
     }
     //Define the file to write using ofstream
-    std::ofstream outputFile(f);
+    std::ofstream outputFile(f,std::ios::app);
 
     if (!outputFile.is_open()) {
         std::cerr <<"bad file name: " << f;   
     }
-    outputFile<<"I just wrote to a file awooh!";
+    outputFile<<"appending to the file just for fun\n";
     outputFile.close();
 
     return 0;
