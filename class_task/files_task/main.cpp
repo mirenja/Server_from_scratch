@@ -22,7 +22,8 @@ int main(){
 
 }
 */
-
+/*************openig and writting to a file*/
+/* 
 int main(){
     std::filesystem::path f = "./file_to_check.cpp";
     //write to a file and then read it.
@@ -43,3 +44,30 @@ int main(){
 
     return 0;
 }
+*/
+
+/* opening and just reading a file displaying its output*/
+ int main(){
+    std::filesystem::path f = "./test.txt";
+    if (!std::filesystem::exists(f)){
+        std::cerr<< "File does not exist: " << f <<std::endl;
+        return 1;
+    }
+    std::ifstream inputFile(f,std::ios::in); //have to define an object instance of ifstream
+    
+    if(!inputFile.is_open()){
+         std::cerr <<"bad file name: " << f;
+         return 1;
+    }
+
+    string line;
+    while(getline(inputFile,line)){
+        cout<< line <<endl;
+
+        }
+
+    inputFile.close();
+
+
+    return 0;
+ }

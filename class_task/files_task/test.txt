@@ -1,2 +1,5 @@
 I just wrote to a file awooh!appending to the file
 appending to the file just for fun
+cheking line 1
+checking line2
+checking line3.line4.line5
