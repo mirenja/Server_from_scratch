@@ -14,7 +14,7 @@ int main(int argc, char const *argv[]) {
     struct sockaddr_in address;
     int addrlen = sizeof(address);
     const int PORT = 8080;
-    const char *hello = "Hello from server";
+    const char *hello = "HTTP/1.1 200 OK\nContent-Type:text/plain\nContent-Length:valread\n\nHello World!";
 
     // Attempt to create a socket file descriptor
     //check if the value of the socket sys call returns val < 0 denotes failure
@@ -39,7 +39,9 @@ int main(int argc, char const *argv[]) {
         std::cerr << "In listen " << strerror(errno) << std::endl;
         exit(EXIT_FAILURE);
     }
+    std::cout << "++++++connection established ++++++++" << std::endl;
     //accepting
+
     while(1){
         std::cout << "+++++++ Waiting for new connection ++++++++" << std::endl;
         if((new_socket = accept(server_fd,(struct sockaddr *)&address,(socklen_t*)&addrlen))<0)
@@ -48,7 +50,7 @@ int main(int argc, char const *argv[]) {
             exit(EXIT_FAILURE); 
         }
     //read and write
-        char  buffer[30000] = {0};
+        char  buffer[30000] = {0}; //declares and array buffere of size 3k and initilizes it to 0, data will be read in chunks of 3k
         valread = read(new_socket, buffer,30000);
         std::cout<<buffer << std::endl;
         write(new_socket,hello,strlen(hello));
