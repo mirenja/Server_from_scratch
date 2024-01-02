@@ -47,6 +47,7 @@ int main(){
 */
 
 /* opening and just reading a file displaying its output*/
+/*
  int main(){
     std::filesystem::path f = "./test.txt";
     if (!std::filesystem::exists(f)){
@@ -71,3 +72,24 @@ int main(){
 
     return 0;
  }
+
+ */
+
+ /* path from input arguments*/
+
+ int main(int argc, char* argv[]){
+
+    if (argc < 2){
+        cerr<<"arguments expected\n";
+        return 1;
+    }
+
+    std::filesystem::path p {argv[1]};
+    cout<< p<< " " <<exists(p)<<'\n';
+
+    return 0;
+
+ }
+
+
+
