@@ -76,7 +76,7 @@ int main(){
  */
 
  /* path from input arguments*/
-
+/*
  int main(int argc, char* argv[]){
 
     if (argc < 2){
@@ -85,11 +85,49 @@ int main(){
     }
 
     std::filesystem::path p {argv[1]};
-    cout<< p<< " " <<exists(p)<<'\n';
+    //cout<< p<< " " <<exists(p)<<'\n';
+    if (exists(p)){
+        cout<< p<< endl;
+    } 
+
 
     return 0;
 
  }
+*/
+
+ /* listing directories*/
+ 
+
+ int main(int argc, char* argv[]){
+
+    if (argc < 2){
+        cerr<<"arguments expected\n";
+        return 1;
+    }
+    std::filesystem::path p {argv[1]};
+    try
+    {
+       
+        if(is_directory(p)){
+            cout<<p<<endl; 
+            for(const std::filesystem::directory_entry& x: std::filesystem::directory_iterator{p})
+                cout<<" "<<x.path()<<endl;
+                //std::cout << "Iterator value: " << &x << " | Element value: " << x.path() << std::endl;
+                }
+        //return 0;
+
+    }
+    catch(std::filesystem::filesystem_error const& ex){
+        //cerr<<ex.code()<<endl;
+        //cout<<"directory doesnt exist"<<endl; //trying to see why we are not getting error logs
+        cerr<<ex.what()<<endl;
+    }
+    return 0;
+    
+
+ }
+
 
 
 
